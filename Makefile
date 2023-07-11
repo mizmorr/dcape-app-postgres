@@ -27,7 +27,8 @@ DB_SHM_SIZE      ?= 64mb
 #- initdbargs for customise create postgres cluster
 DB_INITDB_ARGS   ?= --lc-message=C --auth-host=md5
 
-DCAPE_ROOT ?= ../../
+#- dcape root directory
+DCAPE_ROOT       ?= $(DCAPE_ROOT)
 # ------------------------------------------------------------------------------
 
 -include $(CFG)
@@ -43,8 +44,4 @@ endif
 
 init:
 
-setup:
-	@echo "Setup..."
-	$(MAKE) -s up-db
-	$(MAKE) -s docker-wait
-
+setup: up-db docker-wait
