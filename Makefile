@@ -8,7 +8,7 @@ CFG              ?= .env
 #- Postgresql docker image
 DB_IMAGE         ?= postgres
 #- Postgresql docker image version
-DB_VER           ?= 15.2-alpine
+DB_VER           ?= 15.2
 
 #- ------------------------------------------------------------------------------
 #- Postgresql: internal config
