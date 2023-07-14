@@ -2,13 +2,16 @@
 SHELL            ?= /bin/bash
 CFG              ?= .env
 
+# Docker image version tested for actual dcape release
+DB_VER0          ?= 15.2
+
 #- ******************************************************************************
 #- Postgresql: general config
 
 #- Postgresql docker image
 DB_IMAGE         ?= postgres
 #- Postgresql docker image version
-DB_VER           ?= 15.2
+DB_VER           ?= $(DB_VER0)
 
 #- ------------------------------------------------------------------------------
 #- Postgresql: internal config
@@ -35,13 +38,12 @@ DCAPE_ROOT       ?= $(DCAPE_ROOT)
 export
 
 ifdef DCAPE_STACK
--include $(DCAPE_ROOT)/.env
-export
 include $(DCAPE_ROOT)/Makefile.dcape
 else
 include $(DCAPE_ROOT)/Makefile.app
 endif
 
 init:
-
-setup: up-db docker-wait
+	@if [[ "$$DB_VER0" != "$$DB_VER" ]] ; then \
+	  echo "Warning: DB_VER in dcape ($$DB_VER0) differs from yours ($$DB_VER)" ; \
+	fi
