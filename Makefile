@@ -1,4 +1,7 @@
-# dcape Makefile
+## postgres Makefile.
+## Used with dcape at ../../
+#:
+
 SHELL            ?= /bin/bash
 CFG              ?= .env
 
@@ -32,6 +35,7 @@ DB_INITDB_ARGS   ?= --lc-message=C --auth-host=md5
 
 #- dcape root directory
 DCAPE_ROOT       ?= $(DCAPE_ROOT)
+
 # ------------------------------------------------------------------------------
 
 -include $(CFG)
@@ -43,6 +47,9 @@ else
 include $(DCAPE_ROOT)/Makefile.app
 endif
 
+# ------------------------------------------------------------------------------
+
+# check app version
 init:
 	@if [[ "$$DB_VER0" != "$$DB_VER" ]] ; then \
 	  echo "Warning: DB_VER in dcape ($$DB_VER0) differs from yours ($$DB_VER)" ; \
