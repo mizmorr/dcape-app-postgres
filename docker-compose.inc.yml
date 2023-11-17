@@ -10,7 +10,7 @@
       - 127.0.0.1:${DB_PORT_LOCAL}:5432
     labels:
       - traefik.enable=false
-    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all
+    command: postgres -c shared_preload_libraries=${DB_LIB_PREFIX}pg_stat_statements -c pg_stat_statements.track=all
     environment:
       - POSTGRES_PASSWORD=${DB_ADMIN_PASS}
       - TZ=${TZ}
