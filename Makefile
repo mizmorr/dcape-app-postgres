@@ -54,3 +54,10 @@ init:
 	@if [[ "$$DB_VER0" != "$$DB_VER" ]] ; then \
 	  echo "Warning: DB_VER in dcape ($$DB_VER0) differs from yours ($$DB_VER)" ; \
 	fi
+
+# pgtop database name
+DB ?= postgres
+
+## PG top via pgcenter `make pgtop DB=postgres`
+pgtop:
+	@docker run -it --rm --network $${DCAPE_NET} -e PGPASSWORD=$(DB_ADMIN_PASS) -e PGDATABASE=$(DB) lesovsky/pgcenter:latest pgcenter top -h $(DB_HOSTNAME) -U postgres
