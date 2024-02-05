@@ -34,12 +34,15 @@ DB_SHM_SIZE      ?= 64mb
 DB_INITDB_ARGS   ?= --lc-message=C --auth-host=md5
 
 #- dcape root directory
-DCAPE_ROOT       ?= $(DCAPE_ROOT)
+DCAPE_ROOT       ?= ../../
 
 #- prefix for shared_preload_libraries
 DB_LIB_PREFIX    ?=
 
 # ------------------------------------------------------------------------------
+
+-include $(CFG).bak
+export
 
 -include $(CFG)
 export
