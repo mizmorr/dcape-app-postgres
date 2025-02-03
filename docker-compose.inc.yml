@@ -18,11 +18,11 @@
       - DCAPE_DB_DUMP_DEST=/opt/backup
       - POSTGRES_INITDB_ARGS=${DB_INITDB_ARGS}
     volumes:
-      - ${DCAPE_VAR}/db/data:/var/lib/postgresql/data
-      - ${DCAPE_VAR}/db/backup:/opt/backup
-      - ${DCAPE_VAR}/db/conf.d:/opt/conf.d
-      - ${DCAPE_VAR}/db/shared:/opt/shared
-      - ${DCAPE_VAR}/db/init:/docker-entrypoint-initdb.d/
+      - ${DCAPE_VAR}/db/data:/var/lib/postgresql/data:Z
+      - ${DCAPE_VAR}/db/backup:/opt/backup:Z
+      - ${DCAPE_VAR}/db/conf.d:/opt/conf.d:Z
+      - ${DCAPE_VAR}/db/shared:/opt/shared:Z
+      - ${DCAPE_VAR}/db/init:/docker-entrypoint-initdb.d/:Z
     healthcheck:
       test: ["CMD", "pg_isready", "-q", "-U", "postgres", "-h", "db"]
       interval: 2s
